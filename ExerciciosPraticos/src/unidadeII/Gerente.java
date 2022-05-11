@@ -1,9 +1,19 @@
 package unidadeII;
 
-public class Gerente {
+//ESPECIALIZAÇÃO DA CLASSE FUNCIONARIO
+public class Gerente extends Funcionario {
     private String sala;
 
-    public Gerente(String sala) {
+    public Gerente(String nome, double salario,String sala) {
+        super(nome, salario);
+        this.sala = sala;
+    }
+
+    public String getSala() {
+        return sala;
+    }
+
+    public void setSala(String sala) {
         this.sala = sala;
     }
 
@@ -16,7 +26,7 @@ public class Gerente {
     }
 
     void imprimir(){
-        //super.imprimir();
+        super.imprimir();
         System.out.println("Sala: " + this.sala);
     }
 }

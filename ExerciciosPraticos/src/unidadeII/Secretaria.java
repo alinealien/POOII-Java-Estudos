@@ -1,13 +1,16 @@
 package unidadeII;
 
-
+//HERANÇA DA CLASSE FUNCIONARIO
+//VAI HERDAR OS ATRIBUTOS (NOME E SALARIO. ALEM DO RAMAL)
 public class Secretaria extends Funcionario {
     private String ramal;
 
     Secretaria(String nome, double salario, String ramal) {
-        super(nome, salario);
-        this.ramal = ramal;
+        super(nome, salario);// SUPER: ESTA CHAMANDO O CONSTRUTOR DA CLASSE MÃE(FUNCIONARIO)
+        this.ramal = ramal; //RECEBE RAMAL
     }
+
+    //GET E SET DOS 3 ATRIBUTOS - NOME, SALARIO E RAMAL
 
     void SetNome(String nome) {
         super.SetNome(nome);
@@ -18,11 +21,11 @@ public class Secretaria extends Funcionario {
     }
 
     void SetSalario(double salario) {
-        super.SetSalario(salario);
+        super.Setsalario(salario);
     }
 
     double Getsalario() {
-        return (super.GetSalario());
+        return (super.Getsalario());
     }
 
     void Setramal(String ramal) {
@@ -34,7 +37,7 @@ public class Secretaria extends Funcionario {
     }
 
     void imprimir() {
-        super.imprimir();
+        super.imprimir(); //ACIONA A CLASSE MAE
         System.out.println("ramal: " + this.ramal);
     }
 
