@@ -42,3 +42,123 @@ ________________________________________________________________________________
 
 ##### FORMA DE UTILIZAÇÃO - DETALHADA
 
+- O programa deverá ser criado em um arquivo chamado teste.java, pois estamos criando uma
+  classe em Java chamada teste. Os programas em Java devem ser armazenados em arquivos cujos nomes sejam iguais ao da classe com a extensão .java.
+
+  ```
+  class teste
+
+  {
+
+  // classe teste sem nada
+
+  // declaração de main()
+
+  public static void main(String args[])
+
+  {
+
+  System.out.println(“Olá pessoal“);
+
+  }
+
+  }
+
+  ```
+
+  ​
+
+- Para executá-lo, basta digitar o comando java teste no prompt de comando. Não se esqueça de que a pasta corrente deve ser a pasta em que o programa foi gravado. Esse exemplo simples mostra que não precisamos incluir arquivo algum. Há uma função principal chamada main (em C++ também há!) que não retorna valor algum. A saída de dados é realizada pelo comando println (escrita com mudança
+  de linha), acionado pela linha de código:
+
+  ​
+
+  ```
+  System.out.println(“...“);
+
+  import javax.swing.JOptionPane;
+
+  class teste {
+
+  public static void main(String args[]) {
+
+  String x;
+
+  x = JOptionPane.showInputDialog(null, “Digite uma msg: “);
+
+  System.out.println(x);
+
+  }
+
+  }
+
+  ```
+
+  ​
+
+As chaves servem para delimitar o início e o fim de uma estrutura ou bloco de código. Como Java é puramente orientado a objetos, tudo nele refere-se a classes. O reuso de classes já escritas é simples. Basta informar apenas onde estão. Assim, o comando import da primeira linha indica que utilizaremos a classe JOptionPane, do pacote swing, que está dentro do pacote javax. Podemos importar classes das seguintes formas:
+
+a) import javax.swing.*;
+b) import javax.swing.nome_da_classe;
+
+No primeiro caso (a), todas as classes do pacote swing são visíveis. No segundo caso (b), apenas a classe especificada está visível. Alternativamente, poderíamos ter omitido o comando import e ter escrito o comando de leitura assim:
+
+```
+x = javax.swing.JOptionPane.showInputDialog (...);
+```
+
+Ou seja, informaríamos o nome completo da classe. Ah, os imports mais
+utilizados são:
+
+```
+import java.awt.*; // GUI.
+import java.awt.event.*; // GUI event listeners.
+import javax.swing.*; // Mais GUI.
+import java.util.*; // estruturas de dados
+import java.io.*; // entrada e saída
+import java.text.*; // Classes de formatação.
+import java.util.regex.*; // Expressões regulares
+```
+
+**String, na verdade, é um tipo de dados utilizado para armazenar uma cadeia de caracteres.**
+
+o resultado da chamada da “função”
+(vamos, por enquanto, chamar showInputDialog de função) será atribuído a uma
+cadeia de caracteres cujo nome é x.
+
+EXEMPLO CODIGO CALCULO DE MÉDIA
+
+```
+import javax.swing.JOptionPane;
+import java.lang.*;
+class teste
+{
+public static void main(String args[])
+{
+float nota, media, soma = 0;
+int i;
+for (i=0;i<3;i++)
+{
+nota = Float.parseFloat(JOptionPane.showInputDialog(
+null, “Digite uma nota: “));
+soma = soma + nota;
+}
+media = soma/3;
+System.out.println(media);
+}
+}
+```
+
+Para converter o valor lido por JOptionPane.showInputDialog em float é pre-
+ciso chamar a “função”. de
+conversão de tipo para converter de String para float. O valor convertido é ar-
+mazenado em nota
+
+**Em Java, para se declarar um vetor de inteiros chamado dias_do_mes, precisamos fazer as seguintes declarações:**
+
+```
+int dias_do_mes[ ];//VETOR
+dias_do_mes = new int[12];
+```
+
+A primeira linha apenas indica ao compilador que haverá um vetor. A variável é automaticamente ajustada para null quando o primeiro comando termina. Somente após a alocação (por meio do comando new int seguido do tamanho do vetor) é que o vetor passa a existir. Em Java, não é preciso preocupar-se com a devolução da memória alocada para o sistema operacional. Isso é automaticamente feito pelo sistema interno de coleta de lixo. Uma vantagem da linguagem Java é, portanto, o controle efetivo da memória utilizada.
