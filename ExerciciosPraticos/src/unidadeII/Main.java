@@ -6,12 +6,16 @@ public class Main {
         System.out.println("\n Aula de Herança");
         System.out.println("\n");
 
+   //PARA TESTAR DEVE-SE CRIAR NA MAIN UM NOVO DEPARTAMENTO(ETC) -
+   //PQ QUANDO CHAMA O CONSTRUTOR DE FUNCIONARIO FOR CHAMADO RPECISAMOS PASSAR OS TRES ATRIBUTOS QUE FOI PASSADO
 
-    Funcionario F1 = new Funcionario("Aline", 2000);
+    Departamento D1 = new Departamento("Departamento de informatica ");
+
+    Funcionario F1 = new Funcionario("Aline", 2000, D1);
     F1.imprimir();
     System.out.println("\n");
 
-    Secretaria S1 = new Secretaria("Sirius", 1500,"311");
+    Secretaria S1 = new Secretaria("Sirius", 1500,"311", D1);
     S1.imprimir();
     System.out.println("\n");
 

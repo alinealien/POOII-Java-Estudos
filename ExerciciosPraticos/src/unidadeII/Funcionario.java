@@ -8,11 +8,11 @@ public class Funcionario {
     private String nome;
     private double salario;
 
-    //Novo atributo departamento
+    //NOVO ATRIBUTO DO TIPO DEPARTAMENTO
     private Departamento departamento;
 
     //IMPORTANTE:
-    //SEMPRE QUE FOR CRIADO UM NOVO ATRIBUTO DEVE-SE
+    //TODO OBJETO QUE FOR CRIADO DO TIPO FUNCIONARIO NA CLASSE MAIN ELE CHAMARÁ O CONSTRUTOR DESSA CLASSE(FUNCIONARIO)
 
     //CONSTRUTOR
     Funcionario(String nome, double salario, Departamento departamento) {
@@ -38,10 +38,13 @@ public class Funcionario {
         this.salario = salario; //O VALOR QUE SERA ALTERADO
     }
 
+    //metodos puclicos que acessam os dados privados: Get e Set SÃO PUBLICOS(pertencem a mesma classa)
+    //QUANDO OUTRA CLASSE PRECISA ACESSAR/MODIFICAR OS ATRIBUTOS DE OUTRA CLASSES DEVE-SE SER PELOS METODOS GET E SET
     //IMPRIME O VALOR DOS ATRIBUTOS DA CLASSE
     void imprimir () {
         System.out.println("Nome: " + this.nome);
         System.out.println("Salario: " + this.salario);
+        System.out.println("Departamento: " + this.departamento.Getdescricao()); //Getdescricao() ACESSA O VALOR QUE PERTENCE AO OBJ DESCRICAO
     }
 }
 

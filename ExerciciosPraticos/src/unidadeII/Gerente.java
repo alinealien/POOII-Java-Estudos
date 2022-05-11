@@ -4,8 +4,8 @@ package unidadeII;
 public class Gerente extends Funcionario {
     private String sala;
 
-    public Gerente(String nome, double salario,String sala) {
-        super(nome, salario);
+    public Gerente(String nome, double salario, String sala, Departamento departamento) {
+        super(nome, salario, departamento);
         this.sala = sala;
     }
 

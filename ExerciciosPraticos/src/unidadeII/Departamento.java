@@ -2,6 +2,8 @@ package unidadeII;
 
 //ASSOCIAÇÃO A CLASSE FUNCIONARIO
 
+//OBS:
+
 public class Departamento {
     private String descricao;
 
