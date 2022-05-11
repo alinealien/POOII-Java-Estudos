@@ -266,204 +266,348 @@ Tanto com herança quanto com composição é possível fazer reuso de clas-
 ses já criadas. Esse é um dos grandes atrativos da orientação a objetos, que faz
 com que seja fortemente adotada nas fábricas de software
 
-#### EXEMPLOS
+______________________________
 
-A especificação do código dos métodos pode vir logo após a declaração
-da classe. Alternativamente, um método pode ser definido dentro da decla-
-ração da classe. No exemplo a seguir, o construtor sem parâmetros tem sua
-implementação dentro da declaração da classe. Tal implementação pode ser feita,
-portanto, tanto dentro como fora da declaração da classe!
+#### SOBRECARGA
+
+Em Java não há sobrecarga de operadores. Existem apenas sobrecargas
+de métodos e de construtores. a sobrecarga de métodos
+e de construtores acontece pela diferenciação da assinatura. No exemplo a se-
+guir, será apresentada a classe caixote, com largura, altura e profundidade. Serão
+criados 3 construtores para inicializar um objeto da classe: um sem parâmetros,
+outro com um parâmetro e outro com três parâmetros.
 
 ```
-class horario {
-private:
-int hora;
-int minuto;
-int segundo;
-public:
-horario() { hora = 10; minuto = 5; Segundo = 2;}
-horario(int,int,int);
-acerta_hora(int);
-acerta_minuto(int);
-acerta_segundo(int);
-~horario();
-};
-horario::horario(int a, int b, int c) {
-hora = minuto = segundo = 0;
-if (a >=0 && a < 24)
-hora = a;
-...
+class caixote {
+// atributos
+private double largura, altura, profundidade;
+// construtor sem parâmetros
+// cria um caixote padrão de tamanho 1
+caixote( ) { largura = 1; altura = 1; profundidade = 1;}
+// cria um caixote com tamanho L (se L for positivo)
+caixote( double L) {
+if (L > 0) largura = altura = profundidade = L;
+else largura = altura = profundidade = 1;
 }
-```
-
-O outro construtor, os métodos e o destruidor (ou destrutor) deverão ser
-implementados fora da classe.
-
-Assim, o construtor
-com parâmetros deverá ter nome e sobrenome, como no exemplo de código
-apresentado.
-Provavelmente você já sabe completar o código escondido do construtor
-horário. Note que no protótipo não havia necessidade de especificar os nomes
-dos parâmetros. Aqui há.
-O destruidor (ou destrutor) tem um código muito simples. 
-
-```
-horario::~horario() { }
-```
-
-o código é vazio. Para casos em que não exista alocação dinâmica de
-memória, os destruidores são simples e não precisam nem de declaração. Para
-os casos de alocação dinâmica de memória, o destrutor é necessário, pois é ele
-que devolve a memória emprestada pelo construtor no momento da alocação
-dinâmica.
-Vale relembrar que tanto o construtor como o destrutor não são acionados
-pelo programador. O construtor é acionado no momento da declaração do objeto
-e o destruidor é acionado quando termina o escopo do objeto.
-Todos os outros métodos devem ter o especificador da classe seguido do
-operador de escopo (::) seguido do nome do método. Lembre-se que, dentro
-do método, é importante verificar se os parâmetros passados satisfazem os
-critérios da classe. Os métodos são o meio de acesso aos atributos. Se não
-verificarem os dados passados deixarão que os atributos assumam valores inde-
-vidos. E isso é contrário ao “espírito” de orientação a objetos.
-
-utilizaremos o exemplo
-da classe Horário, que deve armazenar hora, minuto e segundo. Vamos criar dois
-arquivos com extensão .java. O primeiro – referente à classe Horário – deverá se
-chamar Horário.java. O segundo – referente ao programa principal responsável
-pelo teste do uso da classe Horário – se chamará testeHorario.java.
-
-```
-public class Horario {
-private int hora, minuto, segundo;
-public Horario() { hora = 0; minuto = 0; segundo = 0;}
-public Horario(int a, int b, int c) {
-hora = minuto = segundo = 0;
-if (a < 24 && a >= 0) hora = a;
-if (b < 60 && b >= 0) minuto = b;
-if (c < 60 && b >= 0) segundo = c;
-}
-public void setHora(int a) {
-if (a < 24 && a >= 0) hora = a;
-}
-public void setMinuto(int a) {
-if (a < 60 && a >= 0) minuto = a;
-}
-public void setSegundo(int a) {
-if (a < 60 && a >= 0) segundo = a;
-}
-public int getHora() { return hora; }
-public int getMinuto() { return minuto; }
-public int getSegundo() { return segundo; }
-}
-```
-
-A classe Horário deverá restringir o acesso aos 3 atributos já mencionados, a
-partir do especificador de acesso private. A classe Horário deverá ser delimitada pelo abre chaves ({) e o fecha chaves
-(}). Outra questão importante a ser observada no código é a verificação dos va-
-lores que serão atribuídos aos atributos. Note que todos os valores, quer no cons-
-trutor quer nos métodos set, devem ser verificados. Hora deve sempre ficar entre 0 e 24; minuto e segundo sempre entre 0 e 60.
-
-Bom, a classe Horário está pronta e pode ser compilada. Na linha de co-
-mando, digite:
-
-```
-javac Horário.java
-```
-
- comando javac aciona o compilador java e se o código estiver correto
-gerará o arquivo Horário.class.
-Precisamos de um programa principal para utilizar a classe Horário. Sim, em
-Java também é necessário um programa principal (main).
-
-```
-public class testeHorario {
-public static void main(String[] args) {
-Horario almoco = new Horario(12,0,0);
-System.out.println(almoco.getHora());
-}
-}
-```
-
-O objeto almoço é criado por meio do comando new Horario. No exemplo, o
-objeto foi criado com os parâmetros 12, 0 e 0. Isso significa que o horário arma-
-zenado em almoço será 12h00.
-Para imprimir o valor hora armazenado no objeto, busca-se o valor a partir
-do método getHora( ) e promove-se a saída por intermédio do println.
-
-Outro exemplo interessante de classe é o jogo da velha. Consiste em um
-tabuleiro com peças O e X que devem ser colocadas alternadamente pelo jogador
-1 e pelo jogador 2. A classe deve controlar as jogadas, saber a vez do jogador, sa-
-ber se um jogador fez uma jogada incorreta ou não, detectar se o jogo já terminou
-e se houve um ganhador ou não. Sempre que uma jogada correta for realizada e
-o jogo não houver terminado, então a classe solicitará que o outro jogador efetue
-sua jogada. O jogo deve iniciar com as posições vazias. Uma jogada válida é uma
-jogada dentro do tabuleiro em uma posição ainda não ocupada por nenhuma peça.
-Vejamos o protótipo da classe.
-
-```
-class jogo {
-private:
-char tab[3][3]; // armazena jogadas
-int jogadas; // controla total de jogadas
-char jogador; // controla de quem é a vez
-public:
-jogo( ); // inicializa o jogo
-bool terminou( ); // jogo terminou?
-char verifica_vencedor( ); // quem venceu?
-bool posicionar_peca(int, int); // posicionar peça
-void jogar( ); // inicia o jogo
-void limpa_tela( ); // limpa a tela
-void troca_jogador( ); // troca jogador
-void desenhar_tabuleiro( ); // desenha tabuleiro
-};
-```
-
-Deve-se escolher um símbolo – por exemplo * – para indicar que o local
-ainda não foi preenchido. O atributo jogadas será responsável por controlar o
-total de jogadas já realizadas. Deve iniciar-se com o valor zero e ter seu valor
-incrementado em uma unidade a cada nova jogada. Dessa forma, servirá para
-controlar o final do jogo (pois um jogo da velha tem, no máximo, nove jogadas).
-Assim, se o tabuleiro houver sido preenchido e não houver vencedor, então o jogo
-terminou e houve empate. O código do método de controle de fim de jogo será
-apresentado em breve. Por fim, o atributo jogador. Ele armazenará o símbolo do
-jogador da vez.
-
-```
-jogo::jogo( ) {
-int i, j;
-for (i=0;i<3;i++)
-for (j=0;j<3;j++)
-tab[i][j] = ’*’;
-jogadas = 0;
-srand(time(NULL)); // inicializa semente para sorteio
-if (rand( ) % 2 == 0) jogador = ’X’;
-else jogador = ’O’;
-}
-```
-
-Voltando ao construtor, deve-se observar que há a chamada de srand. Para
-que isso ocorra é preciso incluir time.h no código. Srand permite inicializar a se-
-mente do gerador de números aleatórios. Isso permitirá que sempre que um “sorteio” for realizado, ele possa ser diferente do sorteio anterior. O parâmetro
-time(NULL) garante que isso aconteça. Se o parâmetro for um valor constante,
-então os sorteios serão viciados (sempre a mesma coisa, não importa quantas
-vezes você rode o programa). Ou seja, se o jogador a iniciar a partida for X quando
-o parâmetro for 3, então sempre o jogador X iniciará a partida! Com time(NULL)
-isso não é verdade. Uma vez pode ser o X e outra pode ser o O. O sorteio é feito
-por meio da chamada da função rand( ). Seu resultado é um número inteiro que
-será dividido, nesse caso, por 2. Se o resto for 0, então será o jogador X a iniciar
-a partida, caso contrário será o jogador O.
-
-Bom, vamos agora ao código do método de verificação se o jogo terminou
-ou não. Se já ocorreram 9 jogadas, então não há mais espaço disponível para
-novas jogadas. Caso o número de jogadas seja menor que 9, então é preciso
-verificar se já houve um vencedor. Se houve, então o jogo terminou.
-
-```
-bool jogo::terminou( ) {
-if (jogadas < 9 && verifica_vencedor( ) == ’*’)
-return false;
+// cria um caixote com dimensões L x A x P desde que
+// cada uma das dimensões seja positiva
+caixote(double L, double A, double P) {
+if (L > 0) largura = L;
+else largura = 1;
+if (A > 0) altura = A;
+else altura = 1;
+if (P > 0)
+profundidade = P;
 else
-return true;
+profundidade = 1;
+}
+// método de cálculo do volume do caixote
+double volume( ) {
+return largura * altura * profundidade;
+}
 }
 ```
+
+66
+// método de cálculo do volume do caixote
+double volume( ) {
+return largura * altura * profundidade;
+}
+}
+O programa principal deve acionar cada construtor por meio do operador
+new. Para se criar um objeto chamado c1 utilizando o construtor com 3 parâme-
+tros, o comando seria:
+
+```
+caixote c1 = new caixote(5,6,7);
+```
+
+o objeto c1 seria declarado assim:
+
+```
+caixote c1(5,6,7);
+```
+
+Um código exemplo do programa principal em Java que utiliza caixote seria
+o apresentado a seguir.
+
+```
+class caixoteDemo {
+public static void main(String args[]) {
+caixote c1 = new caixote(5,10,15);
+caixote c2 = new caixote( );
+caixote c3 = new caixote(15);
+double vol1, vol2, vol3;
+vol1 = c1.volume();
+...
+System.out.println(“ vol 1 = “ + vol1);
+}
+}
+```
+
+___________________________
+
+#### Alocação dinâmica de memória
+
+Sempre que você optar pela escolha de um tamanho fixo antes da execução
+do programa, o compilador providenciará a alocação prévia da memória a ser
+utilizada e isso não poderá ser modificado durante a execução de seu programa.
+Isso se chama alocação estática de memória e se contrapõe ao conceito de
+alocação dinâmica de memória.
+
+A alocação dinâmica, por outro lado, permite que seu programa aguarde até
+o momento da execução e consulte o usuário para saber qual a quantidade de me-
+mória que deverá ser alocada para executar a tarefa. Como cada usuário fornecerá
+uma resposta e como a decisão da quantidade de memória utilizada ficará adiada
+para quando o usuário executar o programa, isso se chama alocação dinâmica de
+memória. Percebe-se que com a alocação dinâmica de memória, o programa se
+adequará à necessidade do usuário.
+
+Ponteiros trabalham em sintonia com a alocação dinâmica de memória (afi-
+nal de contas, apontam para uma área de memória), mas não só isso. Ponteiros podem apontar para uma área de dados já alocada (quer dinâmica, quer estatica-
+mente) ou mesmo para uma área de código. Sim, ponteiros podem apontar para
+uma função, por exemplo! Dessa forma, tornam-se coringas em programação e,
+se bem empregados, são muito úteis.
+Um dos empregos de ponteiros é na passagem de parâmetros para funções
+e procedimentos.
+
+Os dados de um programa estão armazenados na memória primária (me-
+mória RAM) do computador. Cada dado é referenciado por um endereço, por
+exemplo, 0 x 3EFF34, 0 x 4AFE52 e assim por diante. Não é conveniente progra-
+mar utilizando endereços. Além de dificultar a tarefa de criação do programa, este
+se torna ilegível quando houver a necessidade de se fazer alguma alteração no
+código. Assim, convencionou-se atribuir um nome significativo (por isso você não
+deve utilizar xy34 como um nome de variável) para uma posição de memória que
+armazenará um determinado valor. 
+
+No ambiente de programação
+utilizamos os nomes de variáveis para referenciar uma posição de memória. Ou
+seja, utilizamos nomes no lugar de endereços.
+Existem situações em que um objeto pode estar com uma pessoa em um
+determinado momento e com outra em outro momento. Nesses casos é con-
+veniente ter alguém responsável por nos indicar quem está com o objeto.
+
+Assim, um ponteiro é uma posição de memória que também tem um endereço
+e que armazena um endereço de outra variável. Pelo fato de armazenar um ende-
+reço, dizemos que ele “aponta” para um lugar.
+
+Se existem as áreas de dados reservadas para os inteiros, para os floats,
+etc., existem as áreas reservadas para os ponteiros para inteiros, ponteiros para
+floats, entre outros.
+
+Como a cadeia de caracteres é formada por posições consecutivas de me-
+mória, o endereço inicial é menor que o endereço final. Seria equivalente a dizer
+que em uma rua com casas numeradas em ordem crescente, alguém estivesse
+apontando para a primeira casa da rua e outra pessoa estivesse apontando para
+a última casa da rua. Como a numeração é crescente, sabe-se que a pessoa no
+começo da rua apontará para um número (endereço) menor que o apontado pelo
+colega no final da rua. Daí o significado da primeira parte da expressão lógica
+(inicio < fim && *inicio == *fim). 
+
+Em alocação dinâmica, o que se deseja é solicitar ao sistema que forneça
+um endereço a partir do qual se possam armazenar informações. Vamos começar
+com algo simples: uma variável.
+A alocação é solicitada a partir do comando malloc (ou calloc). Se a solici-
+tação for satisfeita, um endereço é retornado. Caso contrário, NULL é retornado.
+
+```
+p = (int *) malloc(sizeof(int));
+```
+
+Como a função malloc retorna um ponteiro genérico, é preciso realizar a
+conversão do ponteiro para o tipo desejado. No exemplo, a conversão é feita para
+inteiro. Como é ponteiro, é preciso ter o símbolo *. Malloc aloca uma quantidade
+de posições de memória de um determinado tamanho. Assim, a função malloc
+precisa ser informada do tamanho desejado de memória a ser alocada. No caso,
+a intenção era utilizar uma posição para inteiro.
+Se a solicitação não for atendida, então NULL será retornado. Assim, é
+preciso verificar se obtivemos o que solicitamos:
+
+```
+//EX EM C
+if (p == NULL) {
+printf(“Solicitação não atendida! \n“);
+exit(1);
+}
+```
+
+É importante observar que quando uma alocação de memória é feita, um espaço da área de dados é reservada para seu uso. Depois de utilizá-lo, você deve devolvê-lo ao dono para que, caso alguém deseje, possa utilizá-lo. Se você só realizar solicitações de alocação e não fizer nenhuma devolução será equivalente a um aluno que vai à biblioteca e só faz empréstimos sem devolver. Os livros emprestados não estarão disponíveis para que outros possam utilizá-los. Em C a devolução é feita com o comando free. Lembre-se de utilizá-lo!
+
+
+
+####Composição e herança
+
+COMPOSIÇÃO: o mundo real contém objetos que são obtidos por meio da com-
+binação com outros objetos. Quando dizemos que um carro tem uma direção,
+estamos indicando que “direção” faz parte de “carro”; quando um empregado tem
+uma data de admissão, estamos indicando que a data de admissão faz parte da
+classe “empregado”.
+
+A relação tem-um é uma relação importante em orientação a objetos, pois
+permite que o processo de criação de uma classe mais complexa seja feito de
+forma similar a um jogo Lego.
+
+HERANÇA: Do ponto de vista biológico, herança é a transmissão de características co-
+dificadas nos genes para outros indivíduos da mesma espécie, por meio de um
+mecanismo chamado reprodução. Assim, a criação de um novo indivíduo é feita
+segundo um modelo existente. O que ocorre é um reaproveitamento de um có-
+digo genético já existente.
+O paradigma de orientação a objetos inspirou-se também no conceito de
+herança. Se há um código que define uma classe X e há outra classe Y que utiliza
+a classe X como exemplo, então, segundo o conceito de herança, o código da
+classe X pode ser reaproveitado. No exemplo, a classe X serve como base para
+a criação da classe Y. A classe Y é derivada da classe X, assim como queijo,
+requeijão e iogurte seriam derivados de leite. Alguns outros exemplos podem dei-
+xar o conceito de herança mais claro. O primeiro exemplo seria a classe veículo.
+A definição de veículo é “um meio de transporte qualquer”. Ou seja, tudo aquilo
+capaz de mover algo de um lugar para outro é considerado veículo. 
+
+Uma relação muito clara que emerge dessa relação é a relação é-um. Um carro
+é um veículo. Portanto, veículo é uma classe mais geral, que permite diferenciar
+objetos que transportam algo de outros objetos que servem para enfeitar ambien-
+tes, por exemplo. Estamos falando de categorias. Na verdade, podemos criar uma hierarquia de classes.
+
+O fato é que a relação é-um se mantém. Um carro de 4 rodas é um veículo.
+Um carro de 4 rodas é um veículo terrestre de rodas. É importante observar que
+a relação é-um pode ser direta (como no caso filho-pai) ou indireta (como no caso
+neto-avô ou bisneto-bisavô). Na herança direta não existe uma classe intermediá-
+ria. Na indireta há pelo menos uma classe entre as duas relacionadas.
+A herança pode ser simples ou múltipla. Na herança simples apenas uma
+classe é considerada para efeitos de transmissão de características. Na herança
+múltipla mais de uma classe é considerada.
+
+Outro conceito importante associado com herança é o de sobreposição de
+método. Sobreposição (ou anulação) é diferente de sobrecarga. Quando dois mé-
+todos têm o mesmo nome, mas assinaturas diferentes, dizemos que há sobrecar-
+ga de método. Quando um método com mesmo nome e mesma assinatura está
+presente, tanto na classe base como na classe derivada, o método da classe
+derivada esconde o método da classe base, ou seja, sobrepõe-se ao método da
+classe base. A chamada do método por um objeto da classe derivada sempre
+acionará o método presente na classe derivada.
+
+Herança está associada à relação é-um,
+enquanto composição está associada à relação tem-um.
+
+#####Exemplo em Java
+
+Java trabalha apenas com herança simples.  a classe PONTO, que deve ter como atributos as coordenadas x
+e y. Também é importante que existam as funções de acesso aos atributos, chamadas de funções set e get. As funções set servem para alterar os valores,
+enquanto as funções get servem para recuperar os valores armazenados.
+
+```
+public class PONTO {
+private int x, y;
+public PONTO(int a, int b) { x = a; y = b;}
+public void setx(int a) { x = a;}
+public void sety(int a) { y = a;}
+public int getx(){return x;}
+public int gety(){return y;}
+public void imprimir(){
+System.out.println(“ x = “+ x+ “ y = “+ y);
+}
+}
+```
+
+A criação da classe circulo pode ser feita levando-se em conta a existência
+da classe ponto.
+
+```
+public class circulo extends PONTO {
+private double raio;
+public circulo (int a, int b, double c) {
+super(a,b);
+raio = c;
+}
+public double getRaio() {
+return raio;
+}
+@Override public void imprimir(){
+super.imprimir();
+System.out.println(“raio = “+getRaio());
+}
+public double getArea() {
+return 3.141592*getRaio()*getRaio();
+}
+public double getPerimetro() {
+return 2*3.141592*getRaio();
+}
+}
+
+```
+
+Podemos dizer que circulo é um ponto com um raio. A classe circulo indica
+que está herdando características da classe ponto por meio da declaração extends.
+Dessa forma, os atributos x e y também fazem parte da classe circulo, assim
+como os métodos set e get daquela classe.
+Os membros private da classe PONTO não podem ser acessados direta-
+mente pela classe circulo. Dessa forma, x e y são obtidos ou alterados apenas
+por meio das funções de acesso get e set, respectivamente.
+
+O construtor da classe circulo recebe 3 parâmetros, sendo dois deles refe-
+rentes a PONTO. Assim, o construtor da classe circulo deve acionar – por intermé-
+dio da chamada de super – o construtor da classe PONTO. A classe PONTO é a
+classe base, também chamada superclasse. Por isso o nome super. A classe base
+deve ser acionada e finalizada antes da classe derivada. Em uma analogia com
+a construção civil, a classe base seria equivalente ao alicerce de uma obra e a
+classe derivada, as paredes. Não se pode construir as paredes sem o alicerce. A
+chamada da classe base acontece, como informado, por meio do comando super.
+Os parâmetros a e b recebidos pelo construtor de circulo são passados para o
+construtor PONTO a partir da chamada super(a,b). Uma das funções de super
+está, então, decifrada. Outra função de super é acessar um método da classe
+base, o que é demonstrado no método imprimir. Lá, o método imprimir de PONTO
+é acionado e em seguida o raio é impresso. Isso evita que tenhamos que reescrever
+o código da impressão de ponto. Isso é especialmente importante se a impressão
+de ponto obedecer a um formato preestabelecido.
+
+Deve-se observar que em uma classe derivada o comando super deve ser
+sempre o primeiro a ser executado. Se isso não acontecer, o construtor default da
+classe base será acionado automaticamente. É importante que ele exista.
+
+Em Java existe uma anotação (@Override) que permite que programadores
+assinalem a intenção de sobrescrever em uma classe derivada um método da
+classe base. Alguns compiladores utilizam tal anotação para alertar o programa-
+dor quando uma alteração na assinatura de um método é efetuada e não repli-
+cada nos métodos das classes relacionadas (base ou derivada). No código em
+questão, o método imprimir da classe circulo está escondendo o método imprimir
+da classe PONTO. Anotar no código que essa é a verdadeira intenção pode evi-
+tar problemas futuros, no caso de uma mudança de nome, de tipo de retorno ou
+mesmo de número de parâmetros em um dos métodos.
+
+```
+circulo c = new circulo(10,10,2);
+c.imprimir();
+```
+
+Como mencionado, o método imprimir acionado é o da classe circulo. O mé-
+todo imprimir da classe base está escondido. Na verdade, ele é acionado dentro
+do método imprimir da classe circulo por meio da chamada super.imprimir().
+
+Outra palavra-chave em Java que tem relação com herança é a palavra
+FINAL. Ela pode ser usada tanto antes de nomes de métodos como antes de
+nomes de classes. Se um método chamado X da classe base é precedido da pa-
+lavra final, então tal método não poderá ser sobreposto na classe derivada.
+Se uma classe é definida como final, então tal classe não poderá ser derivada.
+
+#### Polimorfismo
+
+O termo “polimorfismo” tem suas origens no idioma grego e significa várias
+(poli) formas (morfos). O polimorfismo universal pode ser considerado o polimorfismo verdadeiro,
+enquanto o polimorfismo ad-hoc normalmente é considerado polimorfismo apa-
+rente ou de aparência. O polimorfismo ad-hoc pode, ainda, ser subdividido em 2
+outros tipos: de sobrecarga e de coerção. Faz sentido entender sobrecarga como uma forma de poli-
+morfismo, visto que um mesmo método pode assumir várias formas dependendo
+da quantidade e do tipo de parâmetros passados. Coerção permite que um argu-
+mento seja convertido para o tipo esperado por uma função, evitando assim um
+erro de tipo. Um exemplo bem simples seria o do operador de adição, definido
+para realizar a soma de 2 números reais. Se um dos operandos for inteiro, então
+ele será forçado a se tornar real.
+
+O polimorfismo universal, como já mencionado, é considerado o verdadeiro
+polimorfismo. Ele é subdividido em 2 outras categorias: paramétrico e de inclusão.
+O polimorfismo paramétrico é aquele que a partir de uma única definição de um
+método ou de atributo pode trabalhar de forma genérica com qualquer tipo. O
+polimorfismo de inclusão está associado com herança. Toda classe derivada (ou
+subclasse) pode ser usada no contexto da classe base (ou superclasse). 
+
+##### Polimorfismo paramétrico
 
