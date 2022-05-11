@@ -162,3 +162,66 @@ dias_do_mes = new int[12];
 ```
 
 A primeira linha apenas indica ao compilador que haverá um vetor. A variável é automaticamente ajustada para null quando o primeiro comando termina. Somente após a alocação (por meio do comando new int seguido do tamanho do vetor) é que o vetor passa a existir. Em Java, não é preciso preocupar-se com a devolução da memória alocada para o sistema operacional. Isso é automaticamente feito pelo sistema interno de coleta de lixo. Uma vantagem da linguagem Java é, portanto, o controle efetivo da memória utilizada.
+
+
+
+#### INTRODUÇÃO A ORIENTAÇÃO A OBJETOS
+
+o paradigma de orientação a objetos utiliza os mesmos princípios utilizados na construção de hardwares (com o uso de componentes básicos como transistores, resistores, fusíveis, diodos, chips, etc.). Os “objetos” já existentes são utilizados para produzir novos “objetos”.
+
+O paradigma de orientação a objetos objetiva mimetizar o que ocorre com o hardware, utilizando um conceito bem comum de nosso mundo: objetos. Formalmente, para uma linguagem ser considerada orientada a objetos ela precisa implementar quatro conceitos básicos:
+
+1. **Abstração:** habilidade de modelar características do mundo real.
+2. **Encapsulamento:** habilidade da unidade de proteger os dados e permitir que apenas suas operações internas tenham acesso a eles. Em linguagens orientadas a objeto o encapsulamento acontece quando escondemos os atributos e métodos do programador (usando private). Assim, ele não pode acessar diretamente tais membros da classe.
+3. **Herança:** mecanismo que permite a) a criação de novos objetos por meio da modificação de algo já existente e b) o vínculo do objeto criado com o objeto antigo. É um conceito muito conhecido na natureza.
+4. **Polimorfismo:** capacidade de uma unidade ter várias formas.
+
+
+
+**CLASSES E OBJETOS:**
+
+uma classe seria um modelo (carimbo) de um objeto. Objeto seria sua concretização (quando o carimbo é usado em conjunto
+com a tinta), ou seja, uma instância da classe. Uma classe deve prever um conjunto de características para o objeto a ser criado a partir do molde, bem como um
+
+conjunto de ações que o objeto poderá executar.
+
+Ações são chamadas de métodos, enquanto as características são cha-
+madas de atributos.
+
+**Para deixar bem claro o conceito de classe e objeto, podemos imaginar a classe cachorro. Um molde ou carimbo genérico seria aquele que permitisse “guardar” informações, tais como nome, altura, peso, idade, raça, cor dos olhos, tamanho do rabo, etc. Um exemplo de um cachorro poderia ser o meu. O Rex tem uma raça específica, uma altura, peso, etc. Ele é uma “instância” da classe ca-chorro. Não consigo tocar na classe cachorro, mas consigo tocar em um exemplo da classe cachorro, que é o Rex. Meu cachorro é um objeto da classe cachorro. Ah, um objeto pode interagir com outro e mudar suas características! Poderíamos utilizar um objeto “spray” para pintar (uma ação de “spray”) a empilhadeira e, assim, mudar um valor de seus atributos (o atributo cor).**
+
+
+
+#### **ELEMENTOS DE UMA CLASSE**:
+
+exemplo já citado seria o da lâmpada. O tipo de lâmpada, a cor, a vol-
+tagem, a potência e o estado da lâmpada (acesa, apagada ou queimada) seriam
+exemplos de atributos. Acender, apagar e queimar a lâmpada seriam exemplos
+de métodos.
+
+```
+typedef struct data
+{
+int dia, mes, ano;
+} data;
+```
+
+Em termos de linguagem de programação, classes diferem de estruturas
+(structs) no quesito proteção de dados. No exemplo da data, podemos ver um con-
+junto de dados (dia, mês e ano) sendo empacotado em um mesmo “volume”. Entre-
+tanto, não há nenhum mecanismo que impeça o programador de criar uma variável
+do tipo data (por exemplo, data_nascimento) e de atribuir o valor 45 para mês. Sim,
+não faz sentido colocar o valor 45 em mês, visto que existem apenas 12 meses e é
+por isso que devemos criar “estruturas” que impeçam tal situação. Assim, é interes-
+sante que possamos controlar os valores assumidos pelos elementos da estrutura
+de forma que dia, mês e ano tenham sempre valores válidos.
+
+A classe esconderá seus dados (visibilidade) e permitirá que apenas alguns mé-
+todos sejam disponibilizados para alteração deles. Se criássemos a classe data,
+precisaríamos de métodos (não chamamos mais de funções) que mantivessem
+a consistência destes. Um método poderia ser atribuir_dia(int x). 
+
+
+
+#### DIAGRAMA DE CLASSES
+
