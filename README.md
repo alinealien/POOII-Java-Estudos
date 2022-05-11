@@ -611,3 +611,251 @@ subclasse) pode ser usada no contexto da classe base (ou superclasse).
 
 ##### Polimorfismo paramétrico
 
+Imagine que você já tenha uma
+classe vetor de inteiros. Agora aparece a necessidade de se criar uma classe vetor
+de floats. Modificar a classe já existente não é uma boa solução, pois você pode
+ter a necessidade de utilizá-la em um futuro próximo. Uma solução seria copiá-la
+para outro arquivo, atribuir-lhe um novo nome e modificar-lhe o tipo de dado, mas
+eventuais ajustes no código original implicarão em ajustes no novo código e nas
+respectivas documentações. E se, além do tipo float, você tivesse que utilizar a
+classe vetor para aceitar também doubles? Os riscos de o código ser modificado
+em alguma das classes e não o ser em outra(s) aumenta. O desejável é que haja
+uma espécie de molde, em que o tipo de dado é definido como genérico e pode
+ser modificado conforme o interesse do programador. Assim, as manutenções
+são feitas em um único código.
+
+#### Generics em Java
+
+Generics em Java tem o mesmo objetivo que template em C++. Vamos criar
+uma classe simples que apenas armazena um valor.
+
+```
+public class Obj {
+private Integer i;
+public void add(Integer i){
+this.i = i;
+}
+public Integer get(){
+return this.i;
+}
+}
+```
+
+A classe em questão armazena um valor inteiro. Para utilizá-la podemos, no
+programa principal, fazer chamadas para add e get, como no exemplo seguinte.
+
+```
+public class NewMain {
+public static void main(String[] args) {
+Obj integerObj = new Obj();
+integerObj.add(10);
+Integer OutroInteger = integerObj.get();
+System.out.println(OutroInteger);
+}
+}
+```
+
+Mas é fácil notar que tal programa não conseguiria trabalhar com Strings.
+Para trabalhar com Strings ou qualquer outro tipo precisaríamos que Obj armaze-
+nasse um tipo de dado genérico, conforme o exemplo a seguir.
+
+```
+public class Obj<T>{
+private T t; // T é o tipo do atributo
+public void add(T t){
+this.t = t;
+}
+public T get(){
+return this.t;
+}
+}
+```
+
+O trecho de código a seguir apresenta o uso da nova classe Obj. Agora ela
+aceita tanto Strings como inteiros.
+
+```
+Obj<String> ObjInt = new Obj<Integer>();
+ObjInt.add(10);
+String OutroObjInt = (Integer) ObjInt.get();
+System.out.println(OutroObjInt);
+Obj<String> cadeiaCaracteres = new Obj<String>();
+cadeiaCaracteres.add(“Teste“);
+String outraCadeia = (String) cadeiaCaracteres.get();
+System.out.println(outraCadeia);
+```
+
+
+
+##### Polimorfismo de inclusão - JAVA
+
+polimorfismo é a capacidade de assumir várias for-
+mas. Ele permite que escrevamos programas mais genéricos. Uma das formas
+vistas nesta unidade é o paramétrico, em que uma classe é projetada indepen-
+dentemente do tipo que seus atributos irão ter. Outra forma é o polimorfismo de
+inclusão, em que um objeto de uma classe mais genérica (base ou superclasse)
+assume o papel de um objeto de uma classe mais específica (subclasse ou clas-
+se derivada). Um exemplo é quando um objeto A de animal assume o papel de
+cachorro (cachorro é um animal)Fica claro, então, que a declaração de um objeto genérico pode implicar
+em uma utilização específica posteriormente. O programador em questão não
+deve se esquecer de que o comando new aloca memória do computador e ela
+deverá ser liberada (por meio do comando delete) tão logo não seja mais utilizada.
+
+Em Java o processo é muito semelhante. Vamos utilizar como exemplo a classe animal e as
+classes cachorro, gato e pato que são derivadas (subclasses) de animal. A classe
+animal tem um construtor que inicializa o tipo de animal criado, um método exibir que
+imprime o tipo do animal e o método som. Note que o método som é genérico.
+
+```
+public class Animal {
+private String tipo;
+public Animal(String tipo1){ tipo = new String(tipo1); }
+public void exibir(){ System.out.println(“Eu sou um“ +
+tipo);}
+//Método a ser implementado nas subclasses.
+public void som(){ System.out.println(“som de animal“); }
+}
+public class Cachorro extends Animal {
+private String nome, raca;
+public Cachorro(String nome1){
+super(“cachorro“);
+nome = nome1; raca = “Boxer”;
+}
+public Cachorro(String nome1, String raca1){
+super(“cachorro“);
+nome = nome1; raca = raca1;
+}
+public void som() { System.out.println(“Auau“);}
+}
+```
+
+O método som de Cachorro imprime Auau, enquanto o do Gato imprime
+miau e o do Pato quaquá. As classes de Gato e Pato não serão repetidas aqui
+por questões de espaço, mas são muito similares à Cachorro. É importante ob-
+servar que a classe Cachorro (assim como a Gato e a Pato) são subclasses de
+Animal e, por isso, utilizam a palavra extends em Java
+
+Para testar o polimorfismo, é preciso criar um programa principal, que
+deve estar dentro da classe TestePolimorfismo. Tal classe deve estar no arqui-
+vo TestePolimorfismo.java
+
+No programa principal criamos um vetor de animais e o chamamos de
+bichos. O interessante dessa construção é que cada elemento do vetor pode as-
+sumir o papel de um animal. Podemos, então, ter cachorro, gato e pato fazendo
+parte de um mesmo vetor.
+
+O código a seguir cria um vetor com os elementos cachorro, gato e pato e
+faz com que um animal de estimação assuma o papel de um dos animais con-
+forme sorteio (feito por Math.random()). O sorteio é feito 5 vezes. Não é possível,
+a partir da inspeção do código, informar, por exemplo, a qual classe pertence o
+método som executado por estimacao. Isso é resolvido em tempo de execução
+
+```
+public class TestePolimorfismo {
+public static void main(String[] args){
+Animal[] bichos = { new Cachorro(“Rex“,“Labrador“),
+new Gato(“Mimi“),
+new Pato(“Gertrudes“) };
+Animal estimacao;
+for (int i=0; i<5; i++){
+int indice = (int) (bichos.length * Math.random()
+- 0.001);
+estimacao = bichos[indice];
+System.out.println(“\n Escolha: “);
+estimacao.exibir();
+estimacao.som();
+}
+}
+```
+
+
+
+#### Classes abstratas
+
+emos uma ideia do que seja abstrato. Uma forma simples de se definir seria
+“algo intangível, que não pode ser pego”.
+
+Do ponto de vista de programação, uma classe que contenha funções virtuais
+puras (C++) ou funções abstratas (Java) é chamada de classe abstrata. Essas
+classes são chamadas assim porque não permitem instanciações (objetos). Na
+verdade, existem apenas com o propósito de estabelecer parâmetros para outras
+classes dela derivadas. Lembrando: as classes derivadas devem conter as imple-
+mentações das funções virtuais puras ou abstratas para que se tornem classes concretas. 
+
+Caso tais implementações não estejam presentes em tais classes,
+elas também serão consideradas abstratas.
+
+Você deve estar achando que classes abstratas e interfaces (de Java) são
+conceitos parecidos e que podem ser usados com objetivos semelhantes. Cuida-
+do! Uma classe pode estender uma única classe (que pode ser abstrata ou não),
+mas pode implementar várias interfaces. Além disso, interfaces Java não permi-
+tem declaração de atributos, enquanto classes abstratas permitem.
+
+##### Exemplos em Java
+
+Em Java, utiliza-se a palavra chave abstract para definir uma classe
+abstrata:
+
+```
+public abstract class Eletrodomestico {
+private boolean ligado;
+private int voltagem;
+// métodos abstratos
+public abstract void ligar();
+public abstract void desligar();
+// construtor
+public Eletrodomestico(boolean l, int volt) {
+this.ligado = l;
+this.voltagem = volt;
+}
+// métodos concretos
+public void setVoltagem(int voltagem) {
+this.voltagem = voltagem;
+}
+public int getVoltagem() {
+return this.voltagem;
+}
+public void setLigado(boolean ligado) {
+this.ligado = ligado;
+}
+public boolean isLigado() {
+return ligado;
+}
+}
+```
+
+A classe eletrodoméstico, no exemplo anterior, cria um “modelo” que deve
+ser compartilhado entre outras classes que herdam as características de eletro-
+domésticos. Nota-se que ter uma voltagem e estar ligado ou não são caracterís-
+ticas de aparelhos elétricos. Assim, pode-se criar uma classe televisão (televisão
+é um eletrodoméstico) que implemente os métodos abstratos da superclasse. Por
+questões de espaço serão apresentados apenas alguns dos principais métodos
+da classe televisão:
+
+```
+public class TV extends Eletrodomestico {
+private int tamanho;
+private int canal;
+private int volume;
+public TV(int tam, int volt) {
+super (false, volt);
+this.tamanho = tam;
+this.canal = 0;
+this.volume = 0;
+}
+// métodos abstratos implementados
+public void desligar() {
+super.setLigado(false);
+setCanal(0);
+setVolume(0);
+}
+public void ligar() {
+super.setLigado(true);
+setCanal(3);
+setVolume(25);
+}
+// outros métodos da classe
+...
+}
+```
+
