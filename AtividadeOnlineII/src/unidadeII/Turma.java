@@ -39,6 +39,11 @@ public class Turma {
 
     String GetAlunos() {
     String a = "";
+        for (int i = 0; i < this.alunos.size(); i++) {
+            a = a + this.alunos.get(i).getNome() + "\n"; //retorne o que esta na string do indice 0
+        }
+        return a;
+    }
 
 
 }
