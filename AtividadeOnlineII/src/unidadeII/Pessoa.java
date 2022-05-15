@@ -47,4 +47,6 @@ public class Pessoa {
         System.out.println("Turma: " + this.turma.getDisciplina());
         System.out.println("Sala: " + this.turma.getSala());
     }
+
+
 }

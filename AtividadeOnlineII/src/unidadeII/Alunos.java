@@ -14,7 +14,6 @@ public class Alunos extends Pessoa {
         this.curso = curso;
     }
 
-
     public String getMatricula() {
         return matricula;
     }

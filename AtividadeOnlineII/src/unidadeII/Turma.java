@@ -1,6 +1,8 @@
 package unidadeII;
 
 //A classe Turma possui uma associação (agregação) com a classe Alunos.
+//A navegabilidade no relacionamento entre as classes Turma e Alunos é unidirecional,
+// ou seja, apenas a classe Turma precisa enxergar a classe Aluno. ?? COMO ASSIM?
 
 import java.util.ArrayList;
 
@@ -36,6 +38,8 @@ public class Turma {
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
     }
+
+    void AddAlunos(Alunos alunos) { this.alunos.add(alunos); }
 
     String GetAlunos() {
     String a = "";
