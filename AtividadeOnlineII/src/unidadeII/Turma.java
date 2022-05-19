@@ -15,12 +15,8 @@ public class Turma {
         this.disciplina = disciplina;
     }
 
-    private ArrayList<Alunos> alunos;
-
-    public Turma(String sala, String disciplina, String alunos) {
-        this.sala = sala;
-        this.disciplina = disciplina;
-        this.alunos = new ArrayList<Alunos>();
+    void dizerTurma(){
+        System.out.println("A sala : " + this.sala);
     }
 
     public String getSala() {
@@ -37,16 +33,6 @@ public class Turma {
 
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
-    }
-
-    void AddAlunos(Alunos alunos) { this.alunos.add(alunos); }
-
-    String GetAlunos() {
-    String a = "";
-        for (int i = 0; i < this.alunos.size(); i++) {
-            a = a + this.alunos.get(i).getNome() + "\n"; //retorne o que esta na string do indice 0
-        }
-        return a;
     }
 
 
