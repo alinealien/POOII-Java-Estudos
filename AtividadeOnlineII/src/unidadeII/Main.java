@@ -50,7 +50,7 @@ public class Main {
 
 
 
-        A1.getTurma().getDisciplina();
+
 
 
         //System.out.println(T1.getDisciplina(A1));
