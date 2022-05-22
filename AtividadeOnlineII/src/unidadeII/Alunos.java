@@ -8,8 +8,8 @@ public class Alunos extends Pessoa {
     private Integer ano_ingresso;
     private String curso;
 
-    //ArrayList<Turma> turmas;
-    ArrayList<Alunos> alunos;
+    private Turma turma;
+    private ArrayList<Alunos> alunos;
 
 
     public Alunos(String matricula, Integer ano_ingresso, String curso, String nome, String endereco, String cpf) {
@@ -17,13 +17,18 @@ public class Alunos extends Pessoa {
         this.matricula = matricula;
         this.ano_ingresso = ano_ingresso;
         this.curso = curso;
-        //turmas = new ArrayList<>();
+
         alunos = new ArrayList<>();
 
 
     }
 
-    void addAlunos(Alunos alunos) {
+    public Turma getTurma(){
+        return turma;
+    }
+
+
+    void AddAlunos(Alunos alunos) {
         this.alunos.add(alunos);
     }
 
@@ -38,18 +43,10 @@ public class Alunos extends Pessoa {
 
 
 
-    /*void addAlunos(Alunos a){
-        alunos.add(a);
-    }
-
-    void  getAlunos() {
-        for (int i = 0; i < alunos.size(); i++) {
-            Alunos a = alunos.get(i);
 
 
-        }
-    }
 
+    /*
     void addTurmas(Turma t) {
         turmas.add(t);
     }
@@ -60,9 +57,9 @@ public class Alunos extends Pessoa {
             t.dizerTurma();
 
         }
-    }
+    } */
 
-     */
+
 
     public String getMatricula() {
         return matricula;

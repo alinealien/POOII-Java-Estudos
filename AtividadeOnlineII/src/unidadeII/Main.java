@@ -33,19 +33,41 @@ public class Main {
         System.out.println(A1.GetAlunos() + " ");
 
 
+        System.out.println("_____________________________________________");
+        //Imprimir uma lista com o nome de todos os Alunos que fazem parte de uma Turma.
+        System.out.println("Lista de todas as Turmas: "  );
+        //System.out.println(T1.getDisciplina());
+        //System.out.println(T2.getDisciplina());
+
+
         //Instanciar pelo menos 1 objeto da classe Turma.
         Turma T1 = new Turma("0202", "POO II");
-        Turma T2 = new Turma("Sala A2", "Estrutura de Dados");
+        T1.imprimir();
+        Turma T2 = new Turma("0303", "Estrutura de Dados");
+        T2.imprimir();
+
+
+
+
+
+        A1.getTurma().getDisciplina();
+
+
+        //System.out.println(T1.getDisciplina(A1));
+
+
+
+
+
+
+        //System.out.println(T1.getTurmas() + " ");
+
 
         //Associar pelo menos 2 objetos da classe Aluno a um único objeto da classe Turma. COMO ASSIM?
 
 
 
-        System.out.println("_____________________________________________");
-        //Imprimir uma lista com o nome de todos os Alunos que fazem parte de uma Turma.
-        System.out.println("Lista das Turmas: "  );
-        //System.out.println(T1.getDisciplina());
-        //System.out.println(T2.getDisciplina());
+
 
 
 

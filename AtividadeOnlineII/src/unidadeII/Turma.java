@@ -4,19 +4,38 @@ package unidadeII;
 //A navegabilidade no relacionamento entre as classes Turma e Alunos é unidirecional,
 // ou seja, apenas a classe Turma precisa enxergar a classe Aluno. ?? COMO ASSIM?
 
+
+
 import java.util.ArrayList;
 
-public class Turma {
+public class Turma  {
     private String sala;
     private String disciplina;
 
-    public Turma(String sala, String disciplina) {
+    private ArrayList<Alunos> alunos;
+
+    public Turma(String sala, String disciplina){
         this.sala = sala;
         this.disciplina = disciplina;
+
     }
 
-    void dizerTurma(){
-        System.out.println("A sala : " + this.sala);
+    void adcionarAluno(){
+
+    }
+
+    public Turma(){
+        alunos = new ArrayList<Alunos>();
+    }
+
+    public void addAlunos(Alunos alunos){
+       // alunos.add(alunos);
+
+    }
+
+    private void dizerTurma( Turma turmas) {
+       this.getDisciplina();
+
     }
 
     public String getSala() {
@@ -35,5 +54,10 @@ public class Turma {
         this.disciplina = disciplina;
     }
 
+    void imprimir() {
+        System.out.println("Sala: " + this.getSala());
+        System.out.println("Disciplina: " + this.getDisciplina());
 
+
+    }
 }
