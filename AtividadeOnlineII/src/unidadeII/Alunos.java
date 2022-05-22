@@ -9,8 +9,6 @@ public class Alunos extends Pessoa {
     private String curso;
 
 
-    //private ArrayList<Alunos> alunos;
-
 
     public Alunos(String matricula, Integer ano_ingresso, String curso, String nome, String endereco, String cpf) {
         super(nome, endereco, cpf);
@@ -84,7 +82,7 @@ public class Alunos extends Pessoa {
     void imprimir() {
         super.imprimir();
         System.out.println("Matricula: " + this.getMatricula());
-        //System.out.println("Ano de Ingresso: " + this.getAno_ingresso());
+        System.out.println("Ano de Ingresso: " + this.getAno_ingresso());
         System.out.println("Curso: " + this.getCurso());
 
 
