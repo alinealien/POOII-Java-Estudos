@@ -8,50 +8,73 @@ package unidadeII;
 
 import java.util.ArrayList;
 
-public class Turma {
+public class Turma implements Turmas {
     private String sala;
     private String disciplina;
 
 
-    private ArrayList<Turma> turmas;
+    private ArrayList<Turma> turma;
 
 
     private ArrayList<Alunos> alunos;
 
+    private ArrayList<Professor> professor;
 
-    public Turma(String sala, String disciplina) {
-        this.sala = sala;
-        this.disciplina = disciplina;
+
+    public Turma(String sala1, String disciplina2) {
+        this.sala = sala1;
+        this.disciplina = disciplina2;
 
 
         this.alunos = new ArrayList<Alunos>();
 
-        this.turmas = new ArrayList<Turma>();
+        this.turma = new ArrayList<Turma>();
+
+        this.professor = new ArrayList<Professor>();
 
     }
 
-    void AddAlunos(Alunos alunos) {
+    @Override
+    public void AddAlunos(Alunos alunos) {
         this.alunos.add(alunos);
     }
 
 
+    void AddTurma(Turma turma) {
+        this.turma.add(turma);
+    }
     String GetAlunos() {
-        String a = " ";
+        StringBuilder a = new StringBuilder(" ");
         for (int i = 0; i < this.alunos.size(); i++) {
-            a = a + this.alunos.get(i).getNome() + " | " + " Matricula:  " + this.alunos.get(i).getMatricula() + "\n";
+            a.append(this.alunos.get(i).getNome()).append(" | ").append(" Matricula:  ").append(this.alunos.get(i).getMatricula()).append("\n");
         }
-        return a;
+        return a.toString();
 
     }
 
-    String GetTurmas(){
+
+    /*void GetTurma(){
         String t = " ";
-        for(int i = 0; i < this.turmas.size(); i++){
-            t = t + this.turmas.get(i).getDisciplina();
-            System.out.println(this.turmas.get(i).getDisciplina());
+        for(int i = 0; i < this.turma.size(); i++){
+            t = t + this.turma.get(i).getDisciplina();
+            System.out.println(this.turma.get(i).getDisciplina());
 
         }
-        return t;
+    }*/
+
+     @Override
+     public void AddProfessor(Professor professor) {
+        this.professor.add(professor);
+    }
+
+    String GetProfessor(){
+        StringBuilder p = new StringBuilder(" ");
+        for(int i = 0; i < this.professor.size(); i++){
+            p.append(this.professor.get(i).getNome());
+            System.out.println(this.professor.get(i).getNome());
+
+        }
+        return p.toString();
     }
 
 
@@ -72,12 +95,13 @@ public class Turma {
             this.disciplina = disciplina;
         }
 
-        void imprimir () {
-            System.out.println("Sala: " + this.getSala());
-            System.out.println("Disciplina: " + this.getDisciplina());
-            System.out.println("Alunos nesta Disciplina: " + this.GetAlunos());;
-            //System.out.println("Aluno: " + this.GetAlunos() + "\n" + "Disciplina: " + this.getDisciplina());
+
+       void imprimir () {
+           System.out.println("Sala: " + this.getSala());
+           System.out.println("Disciplina: " + this.getDisciplina());
+           System.out.println("Alunos nesta Disciplina: " + this.GetAlunos());
+           //System.out.println("Aluno: " + this.GetAlunos() + "\n" + "Disciplina: " + this.getDisciplina());
 
 
-        }
+       }
     }

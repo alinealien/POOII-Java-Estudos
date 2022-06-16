@@ -2,7 +2,7 @@ package unidadeII;
 
 import java.util.ArrayList;
 
-public class Alunos extends Pessoa {
+    public class Alunos extends Pessoa {
 
     private String matricula;
     private Integer ano_ingresso;
@@ -79,11 +79,16 @@ public class Alunos extends Pessoa {
     }
 
 
-    void imprimir() {
-        super.imprimir();
+
+        @Override
+        void imprimir() {
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Endereço: " + this.getEndereco());
+        System.out.println("CPF: " + this.getCpf());
         System.out.println("Matricula: " + this.getMatricula());
         System.out.println("Ano de Ingresso: " + this.getAno_ingresso());
         System.out.println("Curso: " + this.getCurso());
+
 
 
     }

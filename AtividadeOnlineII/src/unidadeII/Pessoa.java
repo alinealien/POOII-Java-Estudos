@@ -3,12 +3,13 @@ package unidadeII;
 //Classe MÃE
 //A classe Pessoa é uma generalização da classe Alunos.
 
-public class Pessoa {
+import java.util.ArrayList;
+
+    public class Pessoa {
 
     private String nome;
     private String endereco;
     private String cpf;
-
 
 
     public Pessoa(String nome, String endereco, String cpf) {
@@ -16,7 +17,10 @@ public class Pessoa {
         this.endereco = endereco;
         this.cpf = cpf;
 
+
+
     }
+
 
     public String getNome() {
         return nome;
@@ -41,10 +45,14 @@ public class Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+
+
     void imprimir(){
         System.out.println("Nome: " + this.getNome());
         System.out.println("Endereço: " + this.getEndereco());
         System.out.println("CPF:" + this.getCpf());
+
 
     }
 
