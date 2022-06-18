@@ -1,8 +1,5 @@
 package unidadeII;
 
-
-
-
 import java.util.ArrayList;
 
 public class Professor extends Pessoa {
@@ -20,8 +17,6 @@ public class Professor extends Pessoa {
 
         ArrayList<Turma> turma = new ArrayList<Turma>();
     }
-
-
 
     void GetTurma() {
         StringBuilder t = new StringBuilder(" ");

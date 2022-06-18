@@ -153,11 +153,11 @@ public class Main {
 
 
 
-    // PROJETO INICIAL
+       // PROJETO INICIAL
 
 
     /*
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         System.out.println("Atividade Online II");
         System.out.println("-----------------------------------------------------------------------");
 
@@ -192,7 +192,7 @@ public class Main {
         //T2.imprimir();
 
 
-//PARTE CERTA ABAIXO
+        //PARTE CERTA ABAIXO
         //Imprimir uma lista com o nome de todos os Alunos que fazem parte de uma Turma.
         //Associar pelo menos 2 objetos da classe Aluno a um único objeto da classe Turma.
 
